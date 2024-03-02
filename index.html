@@ -25,13 +25,7 @@
                          :data-t="tindex"
                          :data-c="cindex"
                          class="ui massive label as alphabet"
-                         :class="[
-              { hasVal: userTryMatrix[tindex][cindex].val != '' },
-              { 'inverted green': userTryMatrix[tindex][cindex].isGreen },
-              { 'inverted yellow': userTryMatrix[tindex][cindex].isYellow },
-              { 'inverted grey': userTryMatrix[tindex][cindex].isGrey },
-              { basic: isBasic(tindex, cindex) }
-            ]">
+                         :class="[ { hasVal: userTryMatrix[tindex][cindex].val != '' }, { 'inverted green': userTryMatrix[tindex][cindex].isGreen },{ 'inverted yellow': userTryMatrix[tindex][cindex].isYellow },{ 'inverted grey': userTryMatrix[tindex][cindex].isGrey },{ basic: isBasic(tindex, cindex) } ]">
                         {{ userTryMatrix[tindex][cindex].val }}
                     </div>
                 </div>
