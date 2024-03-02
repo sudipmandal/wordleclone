@@ -1,0 +1,28 @@
+body {
+  padding-top: 5px;
+}
+
+.as.alphabet {
+  border: 1px solid darkgrey !important;
+  min-height: 52px;
+  min-width: 52px;
+  max-width: 52px;
+  padding: unset !important;
+  padding-top: 10px !important;
+  text-align: center !important;
+  text-transform: uppercase;
+  vertical-align: top !important;
+}
+
+.as.alphabet.hasVal {
+  border: 3px solid darkgrey !important;
+}
+
+.column {
+  padding: 2px !important;
+}
+
+.keypad-key:hover,
+.keypad-key > label:hover {
+  cursor: pointer;
+}
