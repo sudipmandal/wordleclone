@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>WORDLE By Sudip</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="/app.css" />
+</head>
+<body>
+    <div class="ui container">
+        <div class="ui fluid segment">
+            <div class="ui top attached label">Wordle Clone - Pen by Sudip</div>
+
+            <div class="ui one column center aligned grid">
+                <div v-for="(tries, tindex) in userTryMatrix"
+                     :key="tindex"
+                     class="column">
+                    <div v-for="(c, cindex) in tries"
+                         :key="cindex"
+                         :data-t="tindex"
+                         :data-c="cindex"
+                         class="ui massive label as alphabet"
+                         :class="[
+              { hasVal: userTryMatrix[tindex][cindex].val != '' },
+              { 'inverted green': userTryMatrix[tindex][cindex].isGreen },
+              { 'inverted yellow': userTryMatrix[tindex][cindex].isYellow },
+              { 'inverted grey': userTryMatrix[tindex][cindex].isGrey },
+              { basic: isBasic(tindex, cindex) }
+            ]">
+                        {{ userTryMatrix[tindex][cindex].val }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui hidden divider"></div>
+            <div class="ui basic segment">
+                <div class="ui one column center aligned grid">
+                    <div class="column" v-for="(r, rindex) in keyBoardKeys" :key="rindex">
+                        <div class="ui big label keypad-key"
+                             v-for="(k, kindex) in r"
+                             :class="[{ basic: !k.isDisabled }, { grey: k.isDisabled }]">
+                            <label @click="setAlphabet(k.char)" v-if="k.isCharKey">
+                                {{ k.char }}
+                            </label>
+                            <label @click="processBackSpace()" v-if="k.isBackspace">
+                                <i class="long arrow alternate left icon"></i>
+                            </label>
+                            <label @click="processEnter()"
+                                   v-if="!k.isCharKey && !k.isBackspace">
+                                <i class="clockwise rotated level down alternate icon"></i>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="column">&nbsp;</div>
+                    <div class="column">
+                        <button class="ui basic grey button" @click="giveUp()">
+                            <i class="grin beam sweat outline icon"></i>
+                            Give Up
+                        </button>
+                        <button class="ui basic grey button" @click="initGame()">
+                            <i class="sync alternate red icon"></i>
+                            Restart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui horizontal divider">Game Settings</div>
+        <div class="ui segment">
+            <div class="ui five column grid">
+                <div class="three wide column">
+                    <div class="ui basic segment">Word Size :</div>
+                </div>
+                <div class="five wide column">
+                    <div class="ui bottom aligned labeled ticked wordsize small teal slider"></div>
+                </div>
+                <div class="one wide column"></div>
+                <div class="two wide column">
+                    <div class="ui basic segment">Tries :</div>
+                </div>
+                <div class="five wide column">
+                    <div class="ui bottom aligned labeled ticked tries small teal slider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
