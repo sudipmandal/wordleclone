@@ -1,4 +1,6 @@
-export default {
+const { createApp } = Vue
+
+ createApp({
   data() {
     return {
       dictionary: null,
@@ -296,4 +298,4 @@ export default {
       return uiKeyPad;
     }
   }
-};
+}).mount('#app');
