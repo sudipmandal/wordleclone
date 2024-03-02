@@ -8,11 +8,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="/app.js"></script>
-    <link rel="stylesheet" type="text/css" href="/app.css" />
+    <script src="./app.js"></script>
+    <link rel="stylesheet" type="text/css" href="./app.css" />
 </head>
 <body>
-    <div class="ui container">
+    <div class="ui container" id="app">
         <div class="ui fluid segment">
             <div class="ui top attached label">Wordle Clone - Pen by Sudip</div>
 
@@ -91,4 +91,9 @@
         </div>
     </div>
 </body>
+<script type="module">
+    import app from './app.js'
+
+    createApp(app).mount('#app')
+</script>
 </html>
